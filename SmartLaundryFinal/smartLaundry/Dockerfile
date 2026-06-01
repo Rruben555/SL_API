@@ -1,7 +1,8 @@
 # Tahap 1: Build project menggunakan Maven
-FROM maven:3.8.5-openjdk-17 AS build
+FROM openjdk:17-jdk-slim AS build
 COPY . .
-RUN mvn clean package -DskipTests
+RUN chmod +x smartLaundry/mvnw
+RUN cd smartLaundry && ./mvnw clean package -DskipTests
 
 # Tahap 2: Jalankan aplikasi menggunakan OpenJDK
 FROM openjdk:17-jdk-slim
